@@ -17,13 +17,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
 //Base API URL
 app.get('/', (request, response)=> {
-    
+    response.sendFile(__dirname + '/index.html')
 })
 
 app.get('/api/:name', (request, response) => {
-    const conditionName = request.params.name
+    const conditionName = request.params.name.toLowerCase()
     console.log(conditionName)
-    db.collection('icd10_codes').find({desc: conditionName}).toArray((err, res) => {
+    db.collection('icd10_codes').aggregate([ { $search: { "text": { "query": conditionName, "path": "desc_lower"} } } ]).toArray((err, res) => {
         if(err){
             console.error(err)
         } else {
