@@ -17,8 +17,21 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
 //Base API URL
 app.get('/', (request, response)=> {
-    db.collection('icd10_codes').find().toArray()
+    
 })
+
+app.get('/api/:name', (request, response) => {
+    const conditionName = request.params.name
+    console.log(conditionName)
+    db.collection('icd10_codes').find({desc: conditionName}).toArray((err, res) => {
+        if(err){
+            console.error(err)
+        } else {
+            response.send(res)
+        }
+    })
+})
+
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`server is running on PORT ${process.env.PORT || PORT}`)
