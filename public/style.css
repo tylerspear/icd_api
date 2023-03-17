@@ -1,0 +1,41 @@
+
+:root {
+    --light-blue: #62b6cb;
+    --blue: #1b4965;
+    --light: #f8f9fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--light);
+    font-size: 1rem;
+}
+
+.logo {
+    color: var(--blue);
+    font-size: 2.5rem;
+}
+
+.notes {
+    color: var(--blue);
+    font-size: 0.85rem;
+}
+
+.heading {
+    color: var(--blue);
+    text-transform: uppercase;
+}
+
+.icd-code {
+    color: var(--blue);
+    font-weight: bold;
+}
+
+.condition-list li {
+    margin-bottom: 0.5rem;
+}
