@@ -3,6 +3,14 @@ const searchTerm = document.getElementById('search-term')
 const list = document.getElementById('condition-list')
 search.addEventListener('click', buildList)
 
+// Add event listener to input for "Enter" key
+searchTerm.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent default form submission behavior
+        buildList();
+    }
+});
+
 //fetch the data from the /api/term endpoint
 async function runSearch(e){
     //get the input text
